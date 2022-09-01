@@ -1,8 +1,17 @@
+import React from "react";
+import Homepage from "./pages/Homepage/Homepage";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+
+import "./index.css";
+
 function App() {
   return (
-    <div>
-      <h1>Homepage</h1>
-    </div>
+    <>
+      {/* <Register /> */}
+      {/* <Login /> */}
+      <Homepage />
+    </>
   );
 }
 

@@ -1,0 +1,116 @@
+/* :root {
+  --primary-dark: #5651e5;
+  --primary-light: #709dff;
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  position: relative;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero .content {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  background-color: #ffffffcc;
+  color: #000;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 8px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.inputSearch {
+  border: transparent;
+  background-color: transparent;
+  width: 400px;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.inputSearch:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 940px) {
+  .form input[type="text"] {
+    max-width: 275px;
+  }
+}
+
+.h1 {
+  font-size: 3.5rem;
+}
+
+.h2 {
+  font-size: 2rem;
+}
+
+.container {
+  max-width: 1240px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.button {
+  background-image: linear-gradient(45deg, #5651e5 0%, #709dff 100%);
+  border: 1px solid #5651e5;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 940px) {
+  .h1 {
+    font-size: 2.5rem;
+  }
+  .h2 {
+    font-size: 1.5rem;
+  }
+}
