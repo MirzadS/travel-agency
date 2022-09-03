@@ -6,10 +6,13 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
 body {
   font-family: "Poppins", sans-serif;
-  /* overflow-x: auto;
-  overflow-y: auto; */
 }
 
 ul {

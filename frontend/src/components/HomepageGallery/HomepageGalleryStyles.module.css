@@ -36,24 +36,7 @@
    * #RESET
   \*-----------------------------------*/
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-a,
+/* a,
 img,
 span,
 input,
@@ -61,16 +44,13 @@ label,
 button,
 ion-icon {
   display: block;
-}
+} */
 
-html {
+/* html {
   font-family: var(--ff-poppins);
   scroll-behavior: smooth;
-}
-
-body {
-  background: var(--white);
-}
+  overflow-y: auto;
+} */
 
 /*-----------------------------------*\
    * #REUSED STYLE
