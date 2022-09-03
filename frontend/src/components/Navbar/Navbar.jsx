@@ -29,19 +29,19 @@ function Navbar() {
       </div>
       <ul className={styles.navMenu}>
         <Link to="home" smooth={true} duration={500}>
-          <li className={styles.li}>Home</li>
+          <li>Home</li>
         </Link>
         <Link to="destinations" smooth={true} duration={500}>
-          <li className={styles.li}>Destinations</li>
+          <li>Destinations</li>
         </Link>
         <Link to="carousel" smooth={true} duration={500}>
-          <li className={styles.li}>Travel</li>
+          <li>Travel</li>
         </Link>
         <Link to="search" smooth={true} duration={500}>
-          <li className={styles.li}>Book</li>
+          <li>Book</li>
         </Link>
         <Link to="views" smooth={true} duration={500}>
-          <li className={styles.li}>Views</li>
+          <li>Views</li>
         </Link>
       </ul>
       <div className={styles.navIcons}>
@@ -63,19 +63,19 @@ function Navbar() {
       >
         <ul className={styles.mobileNav}>
           <Link to="home" smooth={true} duration={500}>
-            <li className={styles.li}>Home</li>
+            <li>Home</li>
           </Link>
           <Link to="destinations" smooth={true} duration={500}>
-            <li className={styles.li}>Destinations</li>
+            <li>Destinations</li>
           </Link>
           <Link to="carousel" smooth={true} duration={500}>
-            <li className={styles.li}>Travel</li>
+            <li>Travel</li>
           </Link>
           <Link to="search" smooth={true} duration={500}>
-            <li className={styles.li}>Book</li>
+            <li>Book</li>
           </Link>
           <Link to="views" smooth={true} duration={500}>
-            <li className={styles.li}>Views</li>
+            <li>Views</li>
           </Link>
         </ul>
         <div className={styles.mobileMenuBottom}>

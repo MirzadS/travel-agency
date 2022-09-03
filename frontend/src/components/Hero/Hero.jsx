@@ -14,6 +14,7 @@ function Hero() {
       <div className={styles.content}>
         <h1 className={styles.h1}>First Class Travel</h1>
         <h2 className={styles.h2}>Top 1% Locations Worldwide</h2>
+
         <form className={styles.form}>
           <div>
             <input

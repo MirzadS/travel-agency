@@ -18,7 +18,7 @@
   display: flex;
 }
 
-.li {
+.navMenu li {
   padding: 0 1rem;
 }
 
@@ -71,7 +71,7 @@
     top: 80px;
   }
 
-  .mobileMenu .li {
+  .mobileMenu li {
     padding: 1.2rem 1rem;
     margin: 0 1rem;
     border-bottom: 1px solid #ccc;
