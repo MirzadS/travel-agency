@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiSearch } from "react-icons/bi";
+import { MdFavoriteBorder } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -14,9 +14,11 @@ import {
 import { Link } from "react-scroll";
 
 import styles from "./NavbarStyles.module.css";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
+  const [dropdownActive, setDropdownActive] = useState(false);
   const handleNav = () => setNav(!nav);
 
   return (
@@ -45,8 +47,16 @@ function Navbar() {
         </Link>
       </ul>
       <div className={styles.navIcons}>
-        <BiSearch className={styles.icon} style={{ marginRight: "1rem" }} />
-        <BsPerson className={styles.icon} />
+        <MdFavoriteBorder
+          className={styles.icon}
+          style={{ marginRight: "1rem" }}
+        />
+        <BsPerson
+          className={styles.icon}
+          onClick={() => setDropdownActive(!dropdownActive)}
+        />
+
+        {dropdownActive && <DropdownMenu />}
       </div>
       <div className={styles.hamburger} onClick={handleNav}>
         {!nav ? (
@@ -80,8 +90,8 @@ function Navbar() {
         </ul>
         <div className={styles.mobileMenuBottom}>
           <div className={styles.menuIcons}>
-            <button className={styles.button}>Search</button>
-            <button className={styles.button}>Account</button>
+            <button className={styles.button}>Lista želja</button>
+            <button className={styles.button}>Odjavi se</button>
           </div>
           <div className={styles.socialIcons}>
             <FaFacebook className={styles.icon} />
