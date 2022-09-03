@@ -7,7 +7,7 @@ import "./index.css";
 
 ReactDOM.render(
   <DataProvider>
-    <App />,
+    <App />
   </DataProvider>,
   document.getElementById("root")
 );

@@ -6,12 +6,12 @@ import HomepageGallery from "../../components/HomepageGallery/HomepageGallery";
 
 const Homepage = () => {
   return (
-    <>
+    <div>
       <Navbar />
       <Hero />
       <ChatModal />
       <HomepageGallery />
-    </>
+    </div>
   );
 };
 

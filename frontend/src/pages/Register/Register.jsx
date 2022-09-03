@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./RegisterStyles.module.css";
 
+import { Link } from "react-router-dom";
+
 const Register = () => {
   return (
     <div className={styles.fullScreenContainer}>
@@ -38,6 +40,9 @@ const Register = () => {
             <input type="password" name="password" id="password" />
             <span className={styles.msg}>Incorrect password</span>
           </div>
+          <Link to="/login" className={styles.redirectToLogin}>
+            Login Redirect
+          </Link>
 
           <button type="submit" className={styles.loginButton}>
             Login

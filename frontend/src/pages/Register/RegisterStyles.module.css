@@ -131,3 +131,9 @@
 .loginButton:focus {
   background-color: hsl(200, 100%, 50%, 0.4);
 }
+
+.redirectToLogin {
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
