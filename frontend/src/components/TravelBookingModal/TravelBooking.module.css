@@ -19,6 +19,7 @@
 }
 
 .container form {
+  position: relative;
   padding: 20px;
   width: 700px;
   background: #fff;

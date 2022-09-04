@@ -1,39 +1,51 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import img from "../../assets/card_img.png";
 import styles from "./TravelBooking.module.css";
 
-const TravelBooking = ({ isVisible, hide, openModal }) => {
+const TravelBooking = ({ isVisible, hide }) => {
   return isVisible
     ? ReactDOM.createPortal(
         <>
           <div className={styles.container}>
             <form action="">
+              <AiOutlineClose
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  fontSize: "25px",
+                  fontWeight: "bolder",
+                  cursor: "pointer",
+                }}
+                onClick={() => hide()}
+              />
               <div className={styles.row}>
                 <div className={styles.col}>
-                  <h3 className={styles.title}>billing address</h3>
+                  <h3 className={styles.title}>Osobni podaci</h3>
 
                   <div className={styles.inputBox}>
-                    <span>full name :</span>
-                    <input type="text" placeholder="john deo" />
+                    <span>Ime i Prezime :</span>
+                    <input type="text" placeholder="" />
                   </div>
                   <div className={styles.inputBox}>
                     <span>email :</span>
-                    <input type="email" placeholder="example@example.com" />
+                    <input type="email" placeholder="" />
                   </div>
                   <div className={styles.inputBox}>
-                    <span>address :</span>
-                    <input type="text" placeholder="room - street - locality" />
+                    <span>Adresa :</span>
+                    <input type="text" placeholder="" />
                   </div>
                   <div className={styles.inputBox}>
-                    <span>city :</span>
-                    <input type="text" placeholder="mumbai" />
+                    <span>Grad :</span>
+                    <input type="text" placeholder="" />
                   </div>
 
                   <div className={styles.flex}>
                     <div className={styles.inputBox}>
-                      <span>state :</span>
-                      <input type="text" placeholder="india" />
+                      <span>Država :</span>
+                      <input type="text" placeholder="" />
                     </div>
                     <div className={styles.inputBox}>
                       <span>zip code :</span>
@@ -43,28 +55,28 @@ const TravelBooking = ({ isVisible, hide, openModal }) => {
                 </div>
 
                 <div className={styles.col}>
-                  <h3 className={styles.title}>payment</h3>
+                  <h3 className={styles.title}>Plaćanje</h3>
 
                   <div className={styles.inputBox}>
-                    <span>cards accepted :</span>
+                    <span>Dopuštene kartice :</span>
                     <img src={img} alt="" />
                   </div>
                   <div className={styles.inputBox}>
-                    <span>name on card :</span>
-                    <input type="text" placeholder="mr. john deo" />
+                    <span>Ime na kartici :</span>
+                    <input type="text" placeholder="" />
                   </div>
                   <div className={styles.inputBox}>
-                    <span>credit card number :</span>
+                    <span>Broj kartice :</span>
                     <input type="number" placeholder="1111-2222-3333-4444" />
                   </div>
                   <div className={styles.inputBox}>
-                    <span>exp month :</span>
-                    <input type="text" placeholder="january" />
+                    <span>Mjesec isteka :</span>
+                    <input type="text" placeholder="" />
                   </div>
 
                   <div className={styles.flex}>
                     <div className={styles.inputBox}>
-                      <span>exp year :</span>
+                      <span>Godina isteka :</span>
                       <input type="number" placeholder="2022" />
                     </div>
                     <div className={styles.inputBox}>
@@ -77,7 +89,7 @@ const TravelBooking = ({ isVisible, hide, openModal }) => {
 
               <input
                 type="submit"
-                value="proceed to checkout"
+                value="POTVRDI"
                 className={styles.submitBtn}
               />
             </form>

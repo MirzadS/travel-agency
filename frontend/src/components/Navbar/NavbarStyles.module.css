@@ -80,6 +80,9 @@
   .mobileNav {
     margin: 1rem 0;
   }
+  .mobileNav li {
+    color: #000;
+  }
 
   .mobileMenuBottom {
     width: 100%;

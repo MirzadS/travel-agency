@@ -12,10 +12,10 @@ function Hero() {
       </video>
       <div className={styles.overlay}></div>
       <div className={styles.content}>
-        <h1 className={styles.h1}>First Class Travel</h1>
-        <h2 className={styles.h2}>Top 1% Locations Worldwide</h2>
+        <h1 className={styles.h1}>Putovati znači živjeti</h1>
+        <h2 className={styles.h2}>Agencija Dream Tours</h2>
 
-        <form className={styles.form}>
+        {/* <form className={styles.form}>
           <div>
             <input
               className={styles.inputSearch}
@@ -28,7 +28,7 @@ function Hero() {
               <AiOutlineSearch className={styles.icon} />
             </button>
           </div>
-        </form>
+        </form> */}
       </div>
     </div>
   );

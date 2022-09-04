@@ -11,17 +11,17 @@ const HomepageGallery = () => {
   return (
     <section className={styles.gallery} id={styles.gallery}>
       <div className={styles.container}>
-        <p className={styles.sectionSubtitle}>Galerija</p>
+        {/* <p className={styles.sectionSubtitle}>Galerija</p> */}
 
         <h2 className={`${styles.h2} ${styles.sectionTitle}`}>
           Fotografije s putovanja
         </h2>
 
-        <p className={styles.sectionText}>
+        {/* <p className={styles.sectionText}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non saepe
           optio laborum iure, ut quae totam maxime eum sit quia nihil itaque
           architecto.
-        </p>
+        </p> */}
 
         <ul className={styles.galleryList}>
           <li className={styles.galleryItem}>

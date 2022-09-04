@@ -11,7 +11,10 @@ const ChatModal = () => {
 
   return (
     <div>
-      <div className={styles.chatbox}>
+      <div
+        onMouseLeave={() => setChatModalVisible(false)}
+        className={styles.chatbox}
+      >
         {chatModalVisible && (
           <div className={`${styles.chatboxSupport} ${styles.chatboxActive}`}>
             <div className={styles.chatboxHeader}>
@@ -67,7 +70,10 @@ const ChatModal = () => {
           </div>
         )}
         <div className={styles.chatboxButton}>
-          <button onClick={() => setChatModalVisible(!chatModalVisible)}>
+          <button
+            onMouseEnter={() => setChatModalVisible(true)}
+            // onClick={() => setChatModalVisible(!chatModalVisible)}
+          >
             <img src={img4} alt="" />
           </button>
         </div>

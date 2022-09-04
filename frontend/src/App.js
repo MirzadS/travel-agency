@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./index.css";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Destinations from "./pages/Destinations/Destinations";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registracija" element={<Register />} />
         <Route path="/pocetna" element={<Homepage />} />
+        <Route path="/destinacije" element={<Destinations />} />
+        <Route path="/lista-zelja" element={<Wishlist />} />
       </Routes>
     </Router>
   );

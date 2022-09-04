@@ -8,7 +8,7 @@ const TravelCard = ({ openModal }) => {
   return (
     <section className={styles.blogs} id={styles.blogs}>
       {/* <h1 className={styles.heading}> our daily posts </h1> */}
-      <h2 className={styles.sectionTitle}>Najprodavanija putovanja</h2>
+      <h2 className={styles.sectionTitle}>Najpopularnija putovanja</h2>
 
       <div className={`${styles.swiper} ${styles.blogsSlider}`}>
         <div className={styles.cardsWrapper}>
