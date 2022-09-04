@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div className={styles.fullScreenContainer}>
       <div className={styles.loginContainer}>
-        <h1 className={styles.loginTitle}>Welcome</h1>
+        <h1 className={styles.loginTitle}>Dobro došli</h1>
         <form className={styles.form}>
           <div className={`${styles.inputGroup} ${styles.success}`}>
             <label htmlFor="email">Email</label>
@@ -26,7 +26,7 @@ const Login = () => {
           </Link>
 
           <button type="submit" className={styles.loginButton}>
-            Login
+            Prijavi se
           </button>
         </form>
       </div>

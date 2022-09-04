@@ -4,7 +4,7 @@ import { BsCalendar } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
 import styles from "./TravelCard.module.css";
 
-const TravelCard = () => {
+const TravelCard = ({ openModal }) => {
   return (
     <section className={styles.blogs} id={styles.blogs}>
       {/* <h1 className={styles.heading}> our daily posts </h1> */}
@@ -25,7 +25,12 @@ const TravelCard = () => {
             <span className={styles.price}>1000 KM</span>
 
             <div className={styles.travelCardButtons}>
-              <button className={styles.travelBookingBtn}>Prijavi se</button>
+              <button
+                onClick={() => openModal()}
+                className={styles.travelBookingBtn}
+              >
+                Prijavi se
+              </button>
               <button className={styles.readMoreBtn}>Više informacija</button>
               <MdFavoriteBorder className={styles.addToWishlistBtn} />
             </div>
@@ -43,7 +48,12 @@ const TravelCard = () => {
             <span className={styles.price}>1400 KM</span>
 
             <div className={styles.travelCardButtons}>
-              <button className={styles.travelBookingBtn}>Prijavi se</button>
+              <button
+                onClick={() => openModal()}
+                className={styles.travelBookingBtn}
+              >
+                Prijavi se
+              </button>
               <button className={styles.readMoreBtn}>Više informacija</button>
               <MdFavoriteBorder className={styles.addToWishlistBtn} />
             </div>
@@ -61,7 +71,12 @@ const TravelCard = () => {
             <span className={styles.price}>1900 KM</span>
 
             <div className={styles.travelCardButtons}>
-              <button className={styles.travelBookingBtn}>Prijavi se</button>
+              <button
+                onClick={() => openModal()}
+                className={styles.travelBookingBtn}
+              >
+                Prijavi se
+              </button>
               <button className={styles.readMoreBtn}>Više informacija</button>
               <MdFavoriteBorder className={styles.addToWishlistBtn} />
             </div>
