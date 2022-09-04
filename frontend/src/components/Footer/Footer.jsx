@@ -1,11 +1,11 @@
 import React from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
+    <section className={styles.footer}>
+      <div className={styles.boxContainer}>
+        <div className={styles.box}>
           <h3>quick links</h3>
           <a href="#home">home</a>
           <a href="#about">about</a>
@@ -15,7 +15,7 @@ const Footer = () => {
           <a href="#blogs">blogs</a>
         </div>
 
-        <div class="box">
+        <div className={styles.box}>
           <h3>extra links</h3>
           <a href="#">my account</a>
           <a href="#">my order</a>
@@ -25,38 +25,38 @@ const Footer = () => {
           <a href="#">privacy policy</a>
         </div>
 
-        <div class="box">
+        <div className={styles.box}>
           <h3>contact info</h3>
           <a href="#">
-            <i class="fas fa-phone"></i> +123-456-7890{" "}
+            <i className="fas fa-phone"></i> +123-456-7890
           </a>
           <a href="#">
-            <i class="fas fa-phone"></i> +111-222-3333{" "}
+            <i className="fas fa-phone"></i> +111-222-3333
           </a>
           <a href="#">
-            <i class="fas fa-envelope"></i> shaikhanas@gmail.com{" "}
+            <i className="fas fa-envelope"></i> shaikhanas@gmail.com
           </a>
           <a href="#">
-            <i class="fas fa-map"></i> mumbai, india - 400104{" "}
+            <i className="fas fa-map"></i> mumbai, india - 400104
           </a>
         </div>
 
-        <div class="box">
+        <div className={styles.box}>
           <h3>follow us</h3>
           <a href="#">
-            <i class="fab fa-facebook-f"></i> facebook{" "}
+            <i className="fab fa-facebook-f"></i> facebook
           </a>
           <a href="#">
-            <i class="fab fa-twitter"></i> twitter{" "}
+            <i className="fab fa-twitter"></i> twitter
           </a>
           <a href="#">
-            <i class="fab fa-instagram"></i> instagram{" "}
+            <i className="fab fa-instagram"></i> instagram
           </a>
           <a href="#">
-            <i class="fab fa-linkedin"></i> linkedin{" "}
+            <i className="fab fa-linkedin"></i> linkedin
           </a>
           <a href="#">
-            <i class="fab fa-github"></i> github{" "}
+            <i className="fab fa-github"></i> github
           </a>
         </div>
       </div>

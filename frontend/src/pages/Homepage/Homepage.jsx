@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
 import HomepageGallery from "../../components/HomepageGallery/HomepageGallery";
 import Footer from "../../components/Footer/Footer";
+import TravelCard from "../../components/TravelCard/TravelCard";
 
 const Homepage = () => {
   return (
@@ -12,6 +13,7 @@ const Homepage = () => {
       <Hero />
       <ChatModal />
       <HomepageGallery />
+      <TravelCard />
       <Footer />
     </div>
   );

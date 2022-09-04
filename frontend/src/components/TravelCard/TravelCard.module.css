@@ -1,0 +1,156 @@
+.blogs .slide {
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 10px;
+  margin: 2px 10px;
+  /* display: flex;
+  flex-direction: column; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.blogs .slide img {
+  height: 16rem;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.blogs .slide .icons {
+  background: #10221b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  top: -2rem;
+  display: inline-block;
+}
+
+.blogs .slide .icons {
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 1rem;
+}
+
+.blogs .slide .icons:hover {
+  color: #219150;
+}
+
+.blogs .slide .icons i {
+  padding-right: 0.5rem;
+  color: #219150;
+}
+
+.blogs .slide h3 {
+  font-size: 1.5rem;
+  color: #10221b;
+}
+
+.blogs .slide p {
+  font-size: 1rem;
+  padding: 1rem 0;
+  line-height: 2;
+  color: #10221b;
+}
+
+.cardsWrapper {
+  padding: 30px;
+  margin: 50px 100px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* gap: 1.5rem; */
+}
+
+.readMoreBtn {
+  margin-top: 0.7rem;
+  display: inline-block;
+  border: 0.2rem solid #10221b;
+  color: #10221b;
+  cursor: pointer;
+  background: none;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.7rem;
+}
+
+.readMoreBtn:hover {
+  background: #10221b;
+  color: #fff;
+}
+
+.travelBookingBtn {
+  margin-top: 0.7rem;
+  display: inline-block;
+  border: 0.2rem solid #10221b;
+  color: #10221b;
+  cursor: pointer;
+  background: none;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.7rem;
+}
+
+.travelBookingBtn:hover {
+  background: #10221b;
+  color: #fff;
+}
+.addToWishlistBtn {
+  margin-top: 0.7rem;
+  display: inline-block;
+  border: 0.2rem solid #10221b;
+  height: 100%;
+  color: #10221b;
+  cursor: pointer;
+  background: none;
+  font-size: 3rem;
+  padding: 2px;
+  /* padding: 0.7rem 1.7rem; */
+}
+
+.addToWishlistBtn:hover {
+  background: #10221b;
+  color: #fff;
+}
+
+.travelCardButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.price {
+  display: block;
+  text-align: left;
+  padding-left: 40px;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  color: #10221b;
+  letter-spacing: 0.7px;
+}
+
+.sectionTitle {
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  color: hsl(206, 34%, 20%);
+  font-size: calc(18px + 1.6vw);
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .cardsWrapper {
+    padding: 30px;
+    margin: 50px 100px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 850px) {
+  .cardsWrapper {
+    padding: 30px;
+    margin: 50px 100px;
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

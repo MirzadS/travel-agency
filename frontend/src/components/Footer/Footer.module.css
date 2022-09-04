@@ -7,40 +7,40 @@
   background-attachment: fixed;
 }
 
-.footer .box-container {
+.footer .boxContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-.footer .box-container .box h3 {
+.footer .boxContainer .box h3 {
   font-size: 2rem;
   padding: 1.5rem 0;
   color: #fff;
 }
 
-.footer .box-container .box a {
+.footer .boxContainer .box a {
   display: block;
   font-size: 1rem;
   color: #fff;
   padding: 0.6rem 0;
 }
 
-.footer .box-container .box a i {
+.footer .boxContainer .box a i {
   color: #219150;
   padding-right: 0.5rem;
 }
 
-.footer .box-container .box a:hover {
+.footer .boxContainer .box a:hover {
   color: #219150;
 }
 
-.footer .box-container .box a:hover i {
+.footer .boxContainer .box a:hover i {
   padding-right: 2rem;
 }
 
 @media (max-width: 1000px) {
-  .footer .box-container {
+  .footer .boxContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
