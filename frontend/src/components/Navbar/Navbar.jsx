@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavbarStyles.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
-function Navbar() {
+function Navbar({ notHomepage }) {
   const navigate = useNavigate();
   const [nav, setNav] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -29,10 +29,23 @@ function Navbar() {
   return (
     <div
       name="home"
-      className={nav ? `${styles.navbar} ${styles.navbarBg}` : styles.navbar}
+      className={
+        !notHomepage
+          ? nav
+            ? `${styles.navbar} ${styles.navbarBg}`
+            : styles.navbar
+          : nav
+          ? `${styles.navbar} ${styles.navbarBg}`
+          : `${styles.navbar} ${styles.notHomepage} `
+      }
+      style={{
+        position: notHomepage ? "relative" : "none",
+      }}
     >
       <div className={nav ? `${styles.logo} ${styles.dark}` : styles.logo}>
-        <h2 className={styles.h2}>Dream Tours</h2>
+        <h2 onClick={() => navigate("/pocetna")} className={styles.h2}>
+          Dream Tours
+        </h2>
       </div>
       <ul className={styles.navMenu}>
         <Link to="/pocetna">
@@ -40,6 +53,9 @@ function Navbar() {
         </Link>
         <Link to="/destinacije">
           <li>Destinacije</li>
+        </Link>
+        <Link to="/o-nama">
+          <li>O nama</li>
         </Link>
         <Link to="/login">
           <li>Login</li>

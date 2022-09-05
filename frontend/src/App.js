@@ -8,6 +8,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Destinations from "./pages/Destinations/Destinations";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/pocetna" element={<Homepage />} />
         <Route path="/destinacije" element={<Destinations />} />
         <Route path="/lista-zelja" element={<Wishlist />} />
+        <Route path="/o-nama" element={<AboutUs />} />
       </Routes>
     </Router>
   );

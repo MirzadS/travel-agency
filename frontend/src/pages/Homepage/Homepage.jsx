@@ -6,7 +6,7 @@ import HomepageGallery from "../../components/HomepageGallery/HomepageGallery";
 import Footer from "../../components/Footer/Footer";
 import TravelCard from "../../components/TravelCard/TravelCard";
 import TravelBooking from "../../components/TravelBooking/TravelBooking";
-import PopularTravels from "../../components/PopularTravels/PopularTravels";
+import Travels from "../../components/Travels/Travels";
 
 const Homepage = () => {
   const [paymentFormModal, setPaymentFormModal] = useState(false);
@@ -20,7 +20,7 @@ const Homepage = () => {
       <Hero />
       <ChatModal />
       <HomepageGallery />
-      <PopularTravels openModal={openModal} />
+      <Travels title="Najpopularnija putovanja" openModal={openModal} />
       <Footer />
       {/* <TravelBooking /> */}
       <TravelBooking
