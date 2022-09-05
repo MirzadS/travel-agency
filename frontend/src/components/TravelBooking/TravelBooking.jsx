@@ -1,85 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import img from "../../assets/card_img.png";
-import styles from "./TravelBooking.module.css";
+import styles from "./TravelBookingStyles.module.css";
 
-const TravelBooking = () => {
-  return (
-    <div className={styles.container}>
-      <form action="">
-        <div className={styles.row}>
-          <div className={styles.col}>
-            <h3 className={styles.title}>billing address</h3>
+const TravelBooking = ({ isVisible, hide }) => {
+  return isVisible
+    ? ReactDOM.createPortal(
+        <>
+          <div className={styles.container}>
+            <form action="">
+              <AiOutlineClose
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  fontSize: "25px",
+                  fontWeight: "bolder",
+                  cursor: "pointer",
+                }}
+                onClick={() => hide()}
+              />
+              <div className={styles.row}>
+                <div className={styles.col}>
+                  <h3 className={styles.title}>Osobni podaci</h3>
 
-            <div className={styles.inputBox}>
-              <span>full name :</span>
-              <input type="text" placeholder="john deo" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>email :</span>
-              <input type="email" placeholder="example@example.com" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>address :</span>
-              <input type="text" placeholder="room - street - locality" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>city :</span>
-              <input type="text" placeholder="mumbai" />
-            </div>
+                  <div className={styles.inputBox}>
+                    <span>Ime i Prezime :</span>
+                    <input type="text" placeholder="" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>email :</span>
+                    <input type="email" placeholder="" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>Adresa :</span>
+                    <input type="text" placeholder="" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>Grad :</span>
+                    <input type="text" placeholder="" />
+                  </div>
 
-            <div className={styles.flex}>
-              <div className={styles.inputBox}>
-                <span>state :</span>
-                <input type="text" placeholder="india" />
+                  <div className={styles.flex}>
+                    <div className={styles.inputBox}>
+                      <span>Država :</span>
+                      <input type="text" placeholder="" />
+                    </div>
+                    <div className={styles.inputBox}>
+                      <span>zip code :</span>
+                      <input type="text" placeholder="123 456" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.col}>
+                  <h3 className={styles.title}>Plaćanje</h3>
+
+                  <div className={styles.inputBox}>
+                    <span>Dopuštene kartice :</span>
+                    <img src={img} alt="" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>Ime na kartici :</span>
+                    <input type="text" placeholder="" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>Broj kartice :</span>
+                    <input type="number" placeholder="1111-2222-3333-4444" />
+                  </div>
+                  <div className={styles.inputBox}>
+                    <span>Mjesec isteka :</span>
+                    <input type="text" placeholder="" />
+                  </div>
+
+                  <div className={styles.flex}>
+                    <div className={styles.inputBox}>
+                      <span>Godina isteka :</span>
+                      <input type="number" placeholder="2022" />
+                    </div>
+                    <div className={styles.inputBox}>
+                      <span>CVV :</span>
+                      <input type="text" placeholder="1234" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={styles.inputBox}>
-                <span>zip code :</span>
-                <input type="text" placeholder="123 456" />
-              </div>
-            </div>
+
+              <input
+                type="submit"
+                value="POTVRDI"
+                className={styles.submitBtn}
+              />
+            </form>
           </div>
-
-          <div className={styles.col}>
-            <h3 className={styles.title}>payment</h3>
-
-            <div className={styles.inputBox}>
-              <span>cards accepted :</span>
-              <img src={img} alt="" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>name on card :</span>
-              <input type="text" placeholder="mr. john deo" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>credit card number :</span>
-              <input type="number" placeholder="1111-2222-3333-4444" />
-            </div>
-            <div className={styles.inputBox}>
-              <span>exp month :</span>
-              <input type="text" placeholder="january" />
-            </div>
-
-            <div className={styles.flex}>
-              <div className={styles.inputBox}>
-                <span>exp year :</span>
-                <input type="number" placeholder="2022" />
-              </div>
-              <div className={styles.inputBox}>
-                <span>CVV :</span>
-                <input type="text" placeholder="1234" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <input
-          type="submit"
-          value="proceed to checkout"
-          className={styles.submitBtn}
-        />
-      </form>
-    </div>
-  );
+        </>,
+        document.body
+      )
+    : null;
 };
 
 export default TravelBooking;

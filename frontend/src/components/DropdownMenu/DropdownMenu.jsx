@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DropdownMenu.module.css";
+import styles from "./DropdownMenuStyles.module.css";
 
 const DropdownMenu = () => {
   const handleLogout = () => {
