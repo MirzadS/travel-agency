@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Travels from "../../components/Travels/Travels";
 import Footer from "../../components/Footer/Footer";
-import styles from "./WishlistStyles.module.css";
+// import styles from "./WishlistStyles.module.css";
 
 const Wishlist = () => {
   return (

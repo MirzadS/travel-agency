@@ -66,6 +66,9 @@ function Navbar({ notHomepage }) {
         <Link to="/lista-zelja">
           <li>Lista želja</li>
         </Link>
+        <Link to="/detalji-putovanja">
+          <li>Pojedinacno putov.</li>
+        </Link>
         {/* <Link to="views" smooth={true} duration={500}>
           <li>Views</li>
         </Link> */}

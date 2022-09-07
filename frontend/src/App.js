@@ -9,6 +9,7 @@ import "./index.css";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Destinations from "./pages/Destinations/Destinations";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import TravelDetails from "./pages/TravelDetails/TravelDetails";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/destinacije" element={<Destinations />} />
         <Route path="/lista-zelja" element={<Wishlist />} />
         <Route path="/o-nama" element={<AboutUs />} />
+        {/* Promijeniti poslije naziv rute u detalji-putovanja/:id */}
+        <Route path="/detalji-putovanja" element={<TravelDetails />} />
       </Routes>
     </Router>
   );

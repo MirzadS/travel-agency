@@ -1,0 +1,115 @@
+:root {
+  --main-color: #8e44ad;
+  --black: #222;
+  --white: #fff;
+  --light-black: #777;
+  --light-white: #fff9;
+  --dark-bg: rgba(0, 0, 0, 0.7);
+  --light-bg: #eee;
+  --border: 0.1rem solid var(--black);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  --text-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.3);
+}
+
+/* .section { */
+/* padding: 4rem 10%; */
+/* padding: 30px;
+  margin: 0 100px; */
+/* } */
+
+.about {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding: 50px 20px;
+  margin: 60px 100px;
+}
+
+/* .about .image { */
+/* flex: 1 1 35rem; */
+/* } */
+
+.about .image img {
+  width: 100%;
+}
+
+.about .content {
+  /* flex: 1 1 25rem; */
+  text-align: center;
+}
+
+.about .content h3 {
+  font-size: 36px;
+  color: var(--black);
+}
+
+.about .content p {
+  font-size: 16px;
+  color: var(--light-black);
+  line-height: 2;
+  padding: 16px 0;
+}
+
+.about .content .iconsContainer {
+  margin-top: 25px;
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 10px;
+  justify-content: center;
+  /* align-items: flex-end; */
+}
+
+.about .content .iconsContainer .icons {
+  background: rgb(178, 211, 213);
+  padding: 26px;
+  border-radius: 9px;
+}
+
+.about .content .iconsContainer .icons i {
+  /* font-size: 1rem; */
+  /* margin-bottom: 1rem; */
+  /* color: var(--main-color); */
+}
+
+.about .content .iconsContainer .icons span {
+  font-size: 15px;
+  display: block;
+  color: rgb(49, 57, 56);
+}
+
+@media (max-width: 1300px) {
+  .about {
+    grid-template-columns: 45% 55%;
+    gap: 40px;
+    padding: 50px 20px;
+    margin: 60px 40px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .about {
+    grid-template-columns: 40% 60%;
+    gap: 40px;
+    padding: 50px 20px;
+    margin: 60px 25px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 35px 20px;
+    margin: 20px 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .about {
+    padding: 35px 15px;
+    margin: 20px 10px;
+  }
+}
