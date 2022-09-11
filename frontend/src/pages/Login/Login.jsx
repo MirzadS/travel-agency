@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./LoginStyles.module.css";
 
 import { useForm } from "react-hook-form";
@@ -7,13 +7,19 @@ import * as yup from "yup";
 
 import { Link } from "react-router-dom";
 
+import { DataContext } from "../../context/DataContext";
+
+import axios from "axios";
+
 const schema = yup.object().shape({
-  email: yup.string().required(),
+  email: yup.string().email().required(),
   password: yup.string().required(),
   admin: yup.bool().required(),
 });
 
 const Login = () => {
+  const { onSubmitLoginHandler } = useContext(DataContext);
+
   const {
     register,
     handleSubmit,
@@ -21,22 +27,21 @@ const Login = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmitHandler = (data) => {
-    alert(JSON.stringify(data));
-  };
-
   return (
     <div className={styles.fullScreenContainer}>
       <div className={styles.loginContainer}>
         <h1 className={styles.loginTitle}>Dream Tours</h1>
-        <form onSubmit={handleSubmit(onSubmitHandler)} className={styles.form}>
-          <div className={`${styles.inputGroup} ${styles.success}`}>
+        <form
+          onSubmit={handleSubmit(onSubmitLoginHandler)}
+          className={styles.form}
+        >
+          <div className={styles.inputGroup}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               {...register("email")}
               id="email"
-              // value="dreamtoure@gmail.com"
+              // value="evommm@gmail.com"
             />
             {/* <span className={styles.msg}>Valid email</span> */}
             {errors.email && (
@@ -44,13 +49,13 @@ const Login = () => {
             )}
           </div>
 
-          <div className={`${styles.inputGroup} ${styles.error}`}>
-            <label htmlFor="password">Password</label>
+          <div className={`${styles.inputGroup}`}>
+            <label htmlFor="password">Lozinka</label>
             <input
               type="password"
               {...register("password")}
               id="password"
-              // value="123456"
+              // value="dreamtoure@gmail.com"
             />
             {/* <span className={styles.msg}>Incorrect password</span> */}
             {errors.password && (
@@ -73,13 +78,12 @@ const Login = () => {
             </label>
           </div>
 
-          <Link to="/registracija" className={styles.redirectToRegistration}>
-            Registracija Redirect
-          </Link>
-
           <button type="submit" className={styles.loginButton}>
             Prijavi se
           </button>
+          <Link to="/registracija" className={styles.redirectToRegistration}>
+            Nemate račun? Registrirajte se
+          </Link>
         </form>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { MdFavoriteBorder } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
@@ -16,7 +16,11 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavbarStyles.module.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
+import { DataContext } from "../../context/DataContext";
+
 function Navbar({ notHomepage }) {
+  const { token } = useContext(DataContext);
+
   const navigate = useNavigate();
   const [nav, setNav] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -44,7 +48,7 @@ function Navbar({ notHomepage }) {
     >
       <div className={nav ? `${styles.logo} ${styles.dark}` : styles.logo}>
         <h2 onClick={() => navigate("/pocetna")} className={styles.h2}>
-          Dream Tours
+          {token.t_agency_name}
         </h2>
       </div>
       <ul className={styles.navMenu}>
