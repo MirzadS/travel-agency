@@ -2,7 +2,6 @@
   background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
-  /* height: 500px; */
   padding: 20px;
   max-width: 1200px;
   margin: 30px auto;
@@ -24,7 +23,7 @@
   margin-top: 10px;
 } */
 
-.input-container {
+.inputContainer {
   height: 50px;
   position: relative;
   width: 100%;
@@ -63,7 +62,7 @@
   width: 76px;
 }
 
-.cut-short {
+.cutShort {
   width: 130px;
 }
 

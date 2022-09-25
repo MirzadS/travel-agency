@@ -2,6 +2,8 @@ const pool = require("../database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../utils/catchAsync");
+const path = require("path");
+const multer = require("multer");
 
 /**
  * POST
@@ -136,4 +138,84 @@ exports.agencyRegistration = catchAsync(async (req, res, next) => {
 
   return res.status(400).send("Postoji račun s datim emailom");
   // console.log(req.headers["authorization"]);
+});
+
+/**
+ * MULTER - diskStorage
+ */
+
+exports.storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, "../public/images/"));
+  },
+  filename: (req, file, cb) => {
+    const photoName = Date.now() + path.extname(file.originalname);
+    cb(null, photoName);
+  },
+});
+
+exports.uploadImages = catchAsync(async (req, res, next) => {
+  const { travel_id } = req.body;
+
+  // console.log(JSON.stringify(req.body));
+  // console.log(JSON.stringify(travel_id));
+
+  for (const photoName of req.files) {
+    await pool.query(
+      "INSERT INTO travel_image (travel_id, image_path) VALUES ($1,$2)",
+      [travel_id, photoName.filename]
+    );
+    console.log(photoName.filename);
+  }
+
+  res.sendStatus(200);
+});
+
+exports.createNewTour = catchAsync(async (req, res, next) => {
+  const {
+    city,
+    country,
+    price,
+    description,
+    start_date,
+    end_date,
+    number_of_days,
+    max_number,
+    min_number,
+  } = req.body;
+
+  // console.log({
+  //   city,
+  //   country,
+  //   price,
+  //   description,
+  //   start_date,
+  //   end_date,
+  //   number_of_days,
+  //   max_number,
+  //   min_number,
+  // });
+
+  console.log(req.body);
+
+  const s_date = start_date.split("T")[0];
+  const e_date = end_date.split("T")[0];
+
+  const travel_id = await pool.query(
+    "INSERT INTO travel (city,country_id,price,description,start_date,end_date,number_of_days,max_number,min_number,available_seats) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING travel_id",
+    [
+      city,
+      1,
+      price,
+      description,
+      s_date,
+      e_date,
+      number_of_days,
+      max_number,
+      min_number,
+      max_number,
+    ]
+  );
+
+  res.status(200).send(travel_id);
 });
