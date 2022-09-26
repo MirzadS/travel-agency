@@ -17,12 +17,6 @@ const HomepageGallery = () => {
           Fotografije s putovanja
         </h2>
 
-        {/* <p className={styles.sectionText}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non saepe
-          optio laborum iure, ut quae totam maxime eum sit quia nihil itaque
-          architecto.
-        </p> */}
-
         <ul className={styles.galleryList}>
           <li className={styles.galleryItem}>
             <figure className={styles.galleryImage}>

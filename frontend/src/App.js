@@ -15,6 +15,9 @@ import AgencyDashboard from "./pages/AgencyDashboard/AgencyDashboard";
 import AccessTokenVerification from "./utils/AccessTokenVerification";
 import UserPermission from "./utils/UserPermission";
 import AgencyPermission from "./utils/AgencyPermission";
+import AgencyUpdateTour from "./pages/AgencyUpdateTour/AgencyUpdateTour";
+
+import TableUpdateTour from "./components/TableUpdateTour/TableUpdateTour";
 
 function App() {
   return (
@@ -31,13 +34,20 @@ function App() {
             <Route path="/destinacije" element={<Destinations />} />
             <Route path="/lista-zelja" element={<Wishlist />} />
             <Route path="/o-nama" element={<AboutUs />} />
-            {/* Promijeniti poslije naziv rute u detalji-putovanja/:id */}
-            <Route path="/detalji-putovanja" element={<TravelDetails />} />
+
+            <Route
+              path="/detalji-putovanja/:tour_id"
+              element={<TravelDetails />}
+            />
           </Route>
 
           {/* AGENCIJA */}
           <Route element={<AgencyPermission />}>
             <Route path="/agencija/pocetna" element={<AgencyDashboard />} />
+            <Route
+              path="/agencija/azuriraj-putovanje/:tour_id"
+              element={<TableUpdateTour />}
+            />
           </Route>
         </Route>
       </Routes>

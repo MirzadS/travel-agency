@@ -9,24 +9,26 @@ import TravelBooking from "../../components/TravelBooking/TravelBooking";
 import Travels from "../../components/Travels/Travels";
 
 const Homepage = () => {
-  const [paymentFormModal, setPaymentFormModal] = useState(false);
+  // const [paymentFormModal, setPaymentFormModal] = useState(false);
 
-  const openModal = () => {
-    setPaymentFormModal(true);
-  };
+  // const openModal = () => {
+  //   setPaymentFormModal(true);
+  // };
+
   return (
     <div>
       <Navbar />
       <Hero />
       <ChatModal />
       <HomepageGallery />
-      <Travels title="Najpopularnija putovanja" openModal={openModal} />
+      {/* <Travels title="Lista destinacija" openModal={openModal} /> */}
+      <Travels title="Lista destinacija" />
       <Footer />
-      {/* <TravelBooking /> */}
-      <TravelBooking
+
+      {/* <TravelBooking
         isVisible={paymentFormModal}
         hide={() => setPaymentFormModal((prev) => !prev)}
-      />
+      /> */}
     </div>
   );
 };

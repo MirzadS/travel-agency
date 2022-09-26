@@ -14,8 +14,6 @@ const multer = require("multer");
 exports.loginAuthentication = catchAsync(async (req, res, next) => {
   const { email, password, admin } = req.body;
 
-  // console.log({ admin });
-
   if (admin) {
     var data = await pool.query("SELECT * FROM agency WHERE email = $1", [
       email,
@@ -31,9 +29,6 @@ exports.loginAuthentication = catchAsync(async (req, res, next) => {
   }
 
   if (await bcrypt.compare(password, data.rows[0].password)) {
-    console.log("Radi lozinke se podudaraju");
-    // return res.status(200).send("Korisnik je uspjesno prijavljen");
-
     req.data = data.rows[0];
     next();
   } else {
@@ -50,13 +45,6 @@ exports.loginAuthentication = catchAsync(async (req, res, next) => {
 exports.sendToken = async (req, res, next) => {
   const { admin } = req.body;
 
-  // const agencyInfo = await pool.query(
-  //   "SELECT * FROM tabela_proba WHERE email = $1",
-  //   [email]
-  // );
-
-  console.log("prijeee");
-
   if (admin) {
     var tokenInfo = {
       t_agency_name: req.data.name,
@@ -68,7 +56,6 @@ exports.sendToken = async (req, res, next) => {
       t_role_id: req.data.role_id,
     };
   } else {
-    // TREBAM DODATI JOS NEKE STVARI U TOKEN O KORISNIKU NE O AGENCIJI
     const agency_data = await pool.query("SELECT * FROM agency limit 1");
 
     var tokenInfo = {
@@ -79,6 +66,7 @@ exports.sendToken = async (req, res, next) => {
       t_agency_description: agency_data.rows[0].description,
       t_agency_city: agency_data.rows[0].city,
       t_role_id: req.data.role_id,
+      t_user_id: req.data.normal_user_id,
     };
   }
 
@@ -114,7 +102,6 @@ exports.userRegistration = catchAsync(async (req, res, next) => {
   }
 
   return res.status(400).send("Postoji račun s datim emailom");
-  // console.log(req.headers["authorization"]);
 });
 
 exports.agencyRegistration = catchAsync(async (req, res, next) => {
@@ -137,7 +124,6 @@ exports.agencyRegistration = catchAsync(async (req, res, next) => {
   }
 
   return res.status(400).send("Postoji račun s datim emailom");
-  // console.log(req.headers["authorization"]);
 });
 
 /**
@@ -156,9 +142,6 @@ exports.storage = multer.diskStorage({
 
 exports.uploadImages = catchAsync(async (req, res, next) => {
   const { travel_id } = req.body;
-
-  // console.log(JSON.stringify(req.body));
-  // console.log(JSON.stringify(travel_id));
 
   for (const photoName of req.files) {
     await pool.query(
@@ -184,18 +167,6 @@ exports.createNewTour = catchAsync(async (req, res, next) => {
     min_number,
   } = req.body;
 
-  // console.log({
-  //   city,
-  //   country,
-  //   price,
-  //   description,
-  //   start_date,
-  //   end_date,
-  //   number_of_days,
-  //   max_number,
-  //   min_number,
-  // });
-
   console.log(req.body);
 
   const s_date = start_date.split("T")[0];
@@ -218,4 +189,188 @@ exports.createNewTour = catchAsync(async (req, res, next) => {
   );
 
   res.status(200).send(travel_id);
+});
+
+exports.getAllCountries = catchAsync(async (req, res, next) => {
+  const countries = await pool.query(
+    "SELECT country_id,name FROM country ORDER BY country_id"
+  );
+
+  res.status(200).send({ countries: countries.rows });
+});
+
+exports.getTours = catchAsync(async (req, res, next) => {
+  const tours = await pool.query(
+    `SELECT c.name as country_name, t.*, (SELECT ti.image_path AS url from travel_image ti WHERE t.travel_id = ti.travel_id LIMIT 1) FROM travel t 
+    INNER JOIN country c ON t.country_id = c.country_id 
+    WHERE status=$1 ORDER BY travel_id `,
+    [true]
+  );
+
+  res.status(200).send({ tours: tours.rows });
+});
+
+exports.deleteTour = catchAsync(async (req, res, next) => {
+  await pool.query("UPDATE travel SET status = false WHERE travel_id = $1", [
+    req.body.travel_id,
+  ]);
+
+  // await pool.query("DELETE FROM travel WHERE travel_id = $1", [
+  //   req.body.travel_id,
+  // ]);
+
+  res.status(200).send("Uspješno izbrisano");
+});
+
+exports.getUsers = catchAsync(async (req, res, next) => {
+  const users = await pool.query(
+    "SELECT normal_user_id,email FROM normal_user WHERE status=$1 ORDER BY normal_user_id ",
+    [true]
+  );
+
+  console.log(users.rows);
+
+  res.status(200).send({ users: users.rows });
+});
+
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  await pool.query(
+    "UPDATE normal_user SET status = false WHERE normal_user_id = $1",
+    [req.body.user_id]
+  );
+
+  res.status(200).send("Uspješno izbrisano");
+});
+
+exports.getTourData = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+
+  const tourData = await pool.query(
+    "SELECT * FROM travel WHERE travel_id = $1",
+    [req.body.tour_id]
+  );
+
+  console.log(tourData.rows[0]);
+
+  res.status(200).json({ tourData: tourData.rows[0] });
+});
+
+exports.updateTour = catchAsync(async (req, res, next) => {
+  const {
+    city,
+    country,
+    price,
+    description,
+    start_date,
+    end_date,
+    number_of_days,
+    max_number,
+    min_number,
+    tour_id,
+  } = req.body;
+
+  await pool.query(
+    `UPDATE travel SET city = $1, country_id = $2, price = $3, 
+    description = $4, start_date = $5, end_date = $6, number_of_days = $7, max_number = $8, min_number = $9  
+    WHERE travel_id = $10`,
+    [
+      city,
+      country,
+      price,
+      description,
+      start_date,
+      end_date,
+      number_of_days,
+      max_number,
+      min_number,
+      tour_id,
+    ]
+  );
+
+  res.sendStatus(200);
+});
+
+exports.tourSignUp = catchAsync(async (req, res, next) => {
+  const { travel_id, user_id } = req.body;
+
+  const check = await pool.query(
+    `SELECT * FROM registered_travels WHERE travel_id = $1 AND normal_user_id = $2`,
+    [travel_id, user_id]
+  );
+
+  if (!check.rows.length) {
+    await pool.query(
+      "INSERT INTO registered_travels (travel_id, normal_user_id) VALUES ($1,$2)",
+      [travel_id, user_id]
+    );
+  }
+
+  res.sendStatus(200);
+});
+
+exports.tourInfo = catchAsync(async (req, res, next) => {
+  const { tour_id } = req.body;
+
+  const tour = await pool.query(
+    `SELECT c.name as country_name, t.* FROM travel t 
+    INNER JOIN country c ON t.country_id = c.country_id 
+    WHERE status=$1 AND t.travel_id = $2 ORDER BY travel_id `,
+    [true, tour_id]
+  );
+
+  const images = await pool.query(
+    `SELECT image_path as url FROM travel_image
+    WHERE travel_id = $1 ORDER BY travel_image_id `,
+    [tour_id]
+  );
+
+  console.log(tour.rows);
+  console.log(images.rows);
+
+  res.status(200).json({ tour_info: tour.rows, images: images.rows });
+});
+
+exports.getWishlist = catchAsync(async (req, res, next) => {
+  const { user_id } = req.body;
+
+  const tours = await pool.query(
+    `SELECT c.name as country_name, t.*, (SELECT ti.image_path AS url from travel_image ti WHERE t.travel_id = ti.travel_id LIMIT 1) FROM travel t
+    INNER JOIN country c ON t.country_id = c.country_id 
+    WHERE status=$1 AND t.travel_id IN (SELECT wl.travel_id FROM wishlist wl WHERE wl.normal_user_id = $2)
+    ORDER BY travel_id `,
+    [true, user_id]
+  );
+
+  console.log(tours.rows);
+
+  res.status(200).send({ tours: tours.rows });
+});
+
+exports.addToWishlist = catchAsync(async (req, res, next) => {
+  const { user_id, travel_id } = req.body;
+
+  const check = await pool.query(
+    `SELECT * FROM wishlist WHERE travel_id = $1 AND normal_user_id = $2`,
+    [travel_id, user_id]
+  );
+
+  if (!check.rows.length) {
+    await pool.query(
+      "INSERT INTO wishlist (normal_user_id, travel_id) VALUES ($1,$2)",
+      [user_id, travel_id]
+    );
+  }
+
+  res.sendStatus(200);
+});
+
+exports.deleteFromWishlist = catchAsync(async (req, res, next) => {
+  const { user_id, travel_id } = req.body;
+
+  await pool.query(
+    "DELETE FROM wishlist WHERE travel_id = $1 AND normal_user_id = $2",
+    [travel_id, user_id]
+  );
+
+  res.sendStatus(200);
 });

@@ -7,12 +7,8 @@ const multer = require("multer");
 
 const upload = multer({ storage: indexController.storage });
 
-/* TESTNA. */
 router.get("/", function (req, res, next) {
-  // console.log(req.headers["authorization"]);
-
   res.status(200).json({ podaciServer: req.body });
-  // res.status(200).send("evo podataka sa servera");
 });
 
 router.post(
@@ -32,5 +28,23 @@ router.post(
   // upload.single("file"),
 );
 router.post("/novo-putovanje", indexController.createNewTour);
+router.get("/lista-drzava", indexController.getAllCountries);
+router.get("/lista-putovanja", indexController.getTours);
+router.post("/izbrisi-putovanje", indexController.deleteTour);
+
+router.get("/lista-korisnika", indexController.getUsers);
+router.post("/izbrisi-korisnika", indexController.deleteUser);
+
+router.post("/podaci-putovanja", indexController.getTourData);
+
+router.put("/uredi-putovanje", indexController.updateTour);
+
+router.post("/prijavi-putovanje", indexController.tourSignUp);
+
+router.post("/detalji-putovanja", indexController.tourInfo);
+
+router.post("/spasena-putovanja", indexController.getWishlist);
+router.post("/spasi-putovanje", indexController.addToWishlist);
+router.post("/izbrisi-spaseno-putovanje", indexController.deleteFromWishlist);
 
 module.exports = router;

@@ -1,9 +1,13 @@
 import React from "react";
 import styles from "./DropdownMenuStyles.module.css";
+import { useNavigate } from "react-router-dom";
 
 const DropdownMenu = () => {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    alert("Odjavi korisnika");
+    localStorage.removeItem("access_token");
+    navigate("/");
   };
 
   return (

@@ -1,94 +1,102 @@
 import React, { useState, useEffect } from "react";
 
+import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import styles from "./TableNewTourStyles.module.css";
+import styles from "./TableUpdateTourStyles.module.css";
 
 import axios from "axios";
 
-const schema = yup.object().shape({
-  city: yup.string().required(),
-  country: yup.string().required(),
-  price: yup.number().required(),
-  description: yup.string().required(),
-  start_date: yup.date().required(),
-  end_date: yup.date().required(),
-  number_of_days: yup.number().required(),
-  max_number: yup.number().required(),
-  min_number: yup.number().required(),
-  //   images: yup.file().required(),
-});
-
 const TableNewTour = () => {
+  const { tour_id } = useParams();
+  const navigate = useNavigate();
+
   const [countries, setCountries] = useState([]);
+  const [tourData, setTourData] = useState([]);
+
+  const [country, setCountry] = useState("1");
+  const [city, setCity] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [numberOfDays, setNumberOfDays] = useState("");
+  const [maxNumber, setMaxNumber] = useState("");
+  const [minNumber, setMinNumber] = useState("");
 
   const getAllCountries = async () => {
     const { data } = await axios.get("http://localhost:5000/lista-drzava");
     setCountries(data.countries);
   };
+  const getTourData = async () => {
+    const { data } = await axios.post(
+      "http://localhost:5000/podaci-putovanja",
+      { tour_id }
+    );
+
+    setCity(data.tourData.city);
+    setPrice(data.tourData.price);
+    setDescription(data.tourData.description);
+    setStartDate(data.tourData.start_date.split("T")[0]);
+    setEndDate(data.tourData.end_date.split("T")[0]);
+    setNumberOfDays(data.tourData.number_of_days);
+    setMaxNumber(data.tourData.max_number);
+    setMinNumber(data.tourData.min_number);
+  };
 
   useEffect(() => {
     getAllCountries();
+    getTourData();
   }, []);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({ resolver: yupResolver(schema) });
+  const updateTour = async (e) => {
+    e.preventDefault();
 
-  const createNewTour = async (data) => {
-    const agency_data = {
-      city: data.city,
-      country: data.country,
-      price: data.price,
-      description: data.description,
-      start_date: data.start_date,
-      end_date: data.end_date,
-      number_of_days: data.number_of_days,
-      max_number: data.max_number,
-      min_number: data.min_number,
+    const tour_data = {
+      city: city,
+      country: country,
+      price: price,
+      description: description,
+      start_date: startDate,
+      end_date: endDate,
+      number_of_days: numberOfDays,
+      max_number: maxNumber,
+      min_number: minNumber,
+      tour_id: tour_id,
     };
 
-    const new_tour_id = await axios.post(
-      "http://localhost:5000/novo-putovanje",
-      agency_data
-    );
+    await axios.put("http://localhost:5000/uredi-putovanje", tour_data);
 
-    for (let index = 0; index < data.file.length; index++) {
-      const formData = new FormData();
-      formData.append("file", data.file[index]);
-      formData.append("travel_id", new_tour_id.data.rows[0].travel_id);
-
-      await axios.post("http://localhost:5000/fotografije-putovanja", formData);
-    }
-    alert("Uspješno dodano novo putovanje");
+    navigate("/agencija/pocetna");
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(createNewTour)}>
-      <div className={styles.title}>Kreiraj novo putovanje</div>
+    <form className={styles.form} onSubmit={updateTour}>
+      <div className={styles.title}>Uredi postojeće putovanje</div>
       <div className={`${styles.inputContainer} ${styles.ic1}`}>
         <input
           id="city"
           className={styles.input}
           type="text"
           placeholder=" "
-          {...register("city")}
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
         />
         <div className={styles.cut}></div>
         <label htmlFor="city" className={styles.placeholder}>
           Grad
         </label>
       </div>
-      {errors.city && (
-        <span style={{ color: "red" }}>{errors.city.message}</span>
-      )}
+
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
-        <select {...register("country")} className={styles.dropdownList}>
+        <select
+          name="country"
+          className={styles.dropdownList}
+          onChange={(e) => setCountry(e.target.value)}
+          required
+        >
           {countries.map(({ name, country_id }) => (
             <option key={country_id} value={country_id}>
               {name}
@@ -97,26 +105,20 @@ const TableNewTour = () => {
         </select>
       </div>
 
-      {errors.country && (
-        <span style={{ color: "red" }}>{errors.country.message}</span>
-      )}
-
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
           id="price"
           className={styles.input}
           type="number"
           placeholder=" "
-          {...register("price")}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="price" className={styles.placeholder}>
           Cijena
         </label>
       </div>
-      {errors.price && (
-        <span style={{ color: "red" }}>{errors.price.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -124,16 +126,14 @@ const TableNewTour = () => {
           className={styles.input}
           type="text"
           placeholder=" "
-          {...register("description")}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="description" className={styles.placeholder}>
           Opis
         </label>
       </div>
-      {errors.description && (
-        <span style={{ color: "red" }}>{errors.description.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -141,18 +141,16 @@ const TableNewTour = () => {
           className={styles.input}
           type="date"
           defaultValue={new Date().toISOString().substr(0, 10)}
-          min={new Date().toISOString().substr(0, 10)}
+          // min={new Date().toISOString().substr(0, 10)}
           placeholder=" "
-          {...register("start_date")}
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="start_date" className={styles.placeholder}>
           Početak putovanja
         </label>
       </div>
-      {errors.start_date && (
-        <span style={{ color: "red" }}>{errors.start_date.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -160,18 +158,16 @@ const TableNewTour = () => {
           className={styles.input}
           type="date"
           defaultValue={new Date().toISOString().substr(0, 10)}
-          min={new Date().toISOString().substr(0, 10)}
+          // min={new Date().toISOString().substr(0, 10)}
           placeholder=" "
-          {...register("end_date")}
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="end_date" className={styles.placeholder}>
           Kraj putovanja
         </label>
       </div>
-      {errors.end_date && (
-        <span style={{ color: "red" }}>{errors.end_date.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -179,16 +175,14 @@ const TableNewTour = () => {
           className={styles.input}
           type="number"
           placeholder=" "
-          {...register("number_of_days")}
+          value={numberOfDays}
+          onChange={(e) => setNumberOfDays(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="number_of_days" className={styles.placeholder}>
           Broj dana
         </label>
       </div>
-      {errors.number_of_days && (
-        <span style={{ color: "red" }}>{errors.number_of_days.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -197,16 +191,14 @@ const TableNewTour = () => {
           type="number"
           placeholder=" "
           min="1"
-          {...register("min_number")}
+          value={minNumber}
+          onChange={(e) => setMinNumber(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="min_number" className={styles.placeholder}>
           Min br. osoba
         </label>
       </div>
-      {errors.min_number && (
-        <span style={{ color: "red" }}>{errors.min_number.message}</span>
-      )}
 
       <div className={`${styles.inputContainer} ${styles.ic2}`}>
         <input
@@ -214,40 +206,19 @@ const TableNewTour = () => {
           className={styles.input}
           type="number"
           placeholder=" "
+          // value="60"
           min="1"
-          {...register("max_number")}
+          value={maxNumber}
+          onChange={(e) => setMaxNumber(e.target.value)}
         />
         <div className={`${styles.cut} ${styles.cutShort}`}></div>
         <label htmlFor="max_number" className={styles.placeholder}>
           Max br. osoba
         </label>
       </div>
-      {errors.max_number && (
-        <span style={{ color: "red" }}>{errors.max_number.message}</span>
-      )}
-
-      <div className={`${styles.inputContainer} ${styles.ic2}`}>
-        <input
-          id="file"
-          className={styles.input}
-          type="file"
-          placeholder=" "
-          multiple
-          accept="image/*"
-          required
-          {...register("file")}
-        />
-        <div className={`${styles.cut} ${styles.cutShort}`}></div>
-        <label htmlFor="file" className={styles.placeholder}>
-          Fotografije
-        </label>
-      </div>
-      {errors.images && (
-        <span style={{ color: "red" }}>{errors.images.message}</span>
-      )}
 
       <button type="submit" className={styles.submit}>
-        Kreiraj putovanje
+        Izmjeni podatke putovanja
       </button>
     </form>
   );

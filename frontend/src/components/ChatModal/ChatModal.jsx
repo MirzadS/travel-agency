@@ -18,19 +18,13 @@ const ChatModal = () => {
         {chatModalVisible && (
           <div className={`${styles.chatboxSupport} ${styles.chatboxActive}`}>
             <div className={styles.chatboxHeader}>
-              {/* <div className="chatbox__image--header">
-              <img src="./images/image.png" alt="" />
-            </div> */}
               <div className={styles.chatboxContentHeader}>
                 <h4 className={styles.chatboxHeadingHeader}>Ime i Prezime</h4>
-                {/* <p className="chatbox__description--header">
-                There are many variations of passages of Lorem Ipsum available
-              </p> */}
               </div>
             </div>
             <div className={styles.chatboxMessages}>
               <div>
-                <div
+                {/* <div
                   className={`${styles.messagesItem} ${styles.messagesItemVisitor}`}
                 >
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -50,22 +44,12 @@ const ChatModal = () => {
                   className={`${styles.messagesItem} ${styles.messagesItemOperator}`}
                 >
                   Lorem ipsum dolor sit amet consectetur adipisicing.
-                </div>
-                {/* <div
-                  className={`${styles.messagesItem} ${styles.messagesItemTyping}`}
-                > */}
-                {/* <span className={styles.messagesDot}></span>
-                  <span className={styles.messagesDot}></span>
-                  <span className={styles.messagesDot}></span> */}
-                {/* </div> */}
+                </div> */}
               </div>
             </div>
             <div className={styles.chatboxFooter}>
-              {/* <img src={img1} alt="" />
-              <img src={img2} alt="" /> */}
               <input type="text" placeholder="Pošaljite poruku..." />
               <p className={styles.chatboxSendFooter}>Pošalji</p>
-              {/* <img src={img3} alt="" /> */}
             </div>
           </div>
         )}

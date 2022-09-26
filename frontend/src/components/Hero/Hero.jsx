@@ -14,21 +14,6 @@ function Hero() {
       <div className={styles.content}>
         <h1 className={styles.h1}>Putovati znači živjeti</h1>
         <h2 className={styles.h2}>Agencija Dream Tours</h2>
-
-        {/* <form className={styles.form}>
-          <div>
-            <input
-              className={styles.inputSearch}
-              type="text"
-              placeholder="Search Destinations"
-            />
-          </div>
-          <div>
-            <button className={styles.button}>
-              <AiOutlineSearch className={styles.icon} />
-            </button>
-          </div>
-        </form> */}
       </div>
     </div>
   );

@@ -63,11 +63,11 @@ const ImageSlider = ({ slides }) => {
   };
   const slideStylesWidthBackground = {
     ...slideStyles,
-    backgroundImage: `url(${slides[currentIndex].url})`,
+    // backgroundImage: `url(${slides[currentIndex].url})`,
+    backgroundImage: `url(http://localhost:5000/images/${slides[currentIndex].url})`,
   };
 
   return (
-    // <div style={sliderStyles}>
     <div style={sliderStyles}>
       <div>
         <div onClick={goToPrevious} style={leftArrowStyles}>

@@ -27,7 +27,7 @@ function Navbar({ notHomepage }) {
   const handleNav = () => setNav(!nav);
 
   const handleLogout = () => {
-    alert("Odjavi korisnika");
+    localStorage.removeItem("access_token");
   };
 
   return (
@@ -70,12 +70,9 @@ function Navbar({ notHomepage }) {
         <Link to="/lista-zelja">
           <li>Lista želja</li>
         </Link>
-        <Link to="/detalji-putovanja">
-          <li>Pojedinacno putov.</li>
+        <Link to="/video-poziv">
+          <li>Video poziv</li>
         </Link>
-        {/* <Link to="views" smooth={true} duration={500}>
-          <li>Views</li>
-        </Link> */}
       </ul>
       <div className={styles.navIcons}>
         <MdFavoriteBorder

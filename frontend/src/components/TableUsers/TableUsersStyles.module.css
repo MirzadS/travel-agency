@@ -1,0 +1,194 @@
+.container {
+  font-family: "lato", sans-serif;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.responsiveTable li {
+  border-radius: 3px;
+  padding: 25px 10px;
+  display: flex;
+  /* justify-content: space-between; */
+  margin-bottom: 25px;
+}
+
+.tableHeader {
+  background-color: #95a5a6;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  /* text-align: center;
+  display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.tableRow {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  /* justify-content: space-between; */
+}
+.tableRow div {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* text-align: center; */
+}
+
+.rowDiv {
+  text-align: center;
+  width: 80%;
+  margin: 0 5px;
+}
+
+.col {
+  /* flex-basis: 10%; */
+  /* padding-right: 4px; */
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.tableHeader {
+  /* display: flex; */
+  /* justify-content: space-between; */
+
+  /* gap: 110px; */
+  /* padding-right: 40px; */
+
+  /* width: 12.5%; */
+  /* margin: 0 5px; */
+}
+.tableHeader div {
+  width: 12.5%;
+  /* margin: 0 5px; */
+}
+
+.editButton {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  outline: none;
+  overflow: hidden;
+  padding: 6px 2px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 85px;
+}
+
+.editButton:disabled {
+  cursor: default;
+}
+
+.editButton:focus {
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+    rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+.deleteButton {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #e21515;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  outline: none;
+  overflow: hidden;
+  padding: 6px 2px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 85px;
+}
+
+.deleteButton:disabled {
+  cursor: default;
+}
+
+.deleteButton:focus {
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
+    rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+
+/* .col1 {
+  flex-basis: 10%;
+}
+.col2 {
+  flex-basis: 40%;
+}
+.col3 {
+  flex-basis: 25%;
+}
+.col4 {
+  flex-basis: 25%;
+} */
+
+@media all and (max-width: 767px) {
+  .tableHeader {
+    display: none;
+  }
+  .tableRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    display: block;
+  }
+  .col {
+    flex-basis: 100%;
+  }
+  .col {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  .col::before {
+    color: #6c7a89;
+    padding-right: 10px;
+    content: attr(data-label);
+    flex-basis: 50%;
+    text-align: right;
+  }
+}
