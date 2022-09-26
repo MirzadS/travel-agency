@@ -70,9 +70,9 @@ function Navbar({ notHomepage }) {
         <Link to="/lista-zelja">
           <li>Lista želja</li>
         </Link>
-        <Link to="/video-poziv">
+        {/* <Link to="/video-poziv">
           <li>Video poziv</li>
-        </Link>
+        </Link> */}
       </ul>
       <div className={styles.navIcons}>
         <MdFavoriteBorder
